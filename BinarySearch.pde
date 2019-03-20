@@ -23,23 +23,70 @@ private Item[] store =
 };                             
 public int linearSearch(int catNumToFind)
 {
-  //complete this method
-  return -1;
+  for (int i = 0; i < tests.length; i++) 
+  {
+    if (tests[i] == catNumToFind) 
+    {
+      return i;
+    }
+  }
+    return -1;
 }
 public int recursiveLinearSearch(int catNumToFind, int startIndex)
 {
-  //complete this method
-  return -1;
+  if (startIndex >= tests.length)
+  {
+    return -1;
+  }
+  else if (tests[startIndex] == catNumToFind)
+  {
+    return startIndex;
+  }
+  else
+  {
+    return recursiveLinearSearch(catNumToFind, startIndex+1);
+  }
 }
 public int binarySearch(int catNumToFind)
 {
-  //complete this method    
+  int high = tests.length - 1;
+  int low = 0;
+  while (high >= low)
+  {
+    int guess = (low + high) / 2;
+    if (tests[guess] == catNumToFind)
+    {
+      return guess;
+    }
+    else if (tests[guess] < catNumToFind)
+    {
+      low = guess + 1;
+    }
+    else if (tests[guess] > catNumToFind)
+    {
+      high = guess - 1;
+    }
+  }
   return -1;
 }
 public int recursiveBinarySearch(int catNumToFind, int nLow, int nHigh)
 {
-  //complete this method    
-  return -1;
+  int guess = (nLow + nHigh) / 2;
+  if (nLow > nHigh) 
+  {
+    return -1;
+  }
+  if (tests[guess] > catNumToFind) 
+  {
+    return recursiveBinarySearch(catNumToFind, nLow, guess-1);
+  }
+  else if (tests[guess] < catNumToFind) 
+  {
+    return recursiveBinarySearch(catNumToFind, guess+1, nHigh);
+  }
+  else 
+  {
+    return guess;
 }
 public void setup()
 {
@@ -94,9 +141,3 @@ public void draw()
 {
   //empty!
 }
-
-
-
-
-
-
